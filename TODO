@@ -35,7 +35,7 @@ Homework
 1. https://www.bootdey.com/snippets/view/Shop-product-list
 2. https://books.agiliq.com/projects/django-admin-cookbook/en/latest/index.html#text-and-design
 3. https://docs.djangoproject.com/en/5.2/ref/models/fields/
-
+4. https://books.agiliq.com/projects/django-orm-cookbook/en/latest/
 
 
 
@@ -45,4 +45,15 @@ https://www.bootdey.com/snippets/view/Shop-page
 
 3ta category
 1 2 3
+
+
+docker exec -it container_name sh
+su postgres
+psql
+create database valijondb;
+
+docker exec -itu postgres container_id psql -c 'create database valijon_db123;'
+
+docker run --name postgres_container -e POSTGRES_PASSWORD=1 -p 5432:5432 -d postgres:alpine
+
 

@@ -1,14 +1,15 @@
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
 from apps.models import Product
 
 
-# function based, class based
+class ProductListView(ListView):
+    queryset = Product.objects.all()
+    template_name = 'apps/product-list.html'
+    context_object_name = 'products'
 
-def index_page(request):
-    products = Product.objects.all()
 
-    context = {
-        'products': products
-    }
-    return render(request, 'apps/product-list.html', context)
+class ProductDetailView(DetailView):
+    queryset = Product.objects.all()
+    template_name = 'apps/product-detail.html'
+    context_object_name = 'product'
