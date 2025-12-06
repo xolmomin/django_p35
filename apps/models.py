@@ -14,7 +14,7 @@ class Category(Model):
 
 class Tag(Model):
     name = CharField(max_length=255)
-    slug = SlugField(max_length=255, null=True, unique=True)
+    slug = SlugField(max_length=255, unique=True)
 
     def save(self, *, force_insert=False, force_update=False, using=None, update_fields=None):
         self.slug = slugify(self.name)
@@ -28,7 +28,7 @@ class ProductImage(Model):
 
 class Product(Model):
     name = CharField(max_length=255)
-    slug = SlugField(max_length=255, null=True, unique=True)
+    slug = SlugField(max_length=255, unique=True)
     shipping_cost = IntegerField()
     price = FloatField()
     discount_percentage = IntegerField()

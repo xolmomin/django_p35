@@ -7,9 +7,14 @@ Homework
 4. https://books.agiliq.com/projects/django-orm-cookbook/en/latest/
 
 
+https://books.agiliq.com/projects/django-orm-cookbook/en/latest/#querying-and-filtering
 
 
-slug
+id(pk),slug
 pagination
-orm
 base.html
+orm
+
+
+
+django list va detail page
