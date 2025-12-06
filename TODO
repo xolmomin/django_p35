@@ -1,36 +1,5 @@
 
 
-backend
-
-request
-response
-status code
-1xx - information
-2xx - success
-3xx - redirect
-4xx - client error
-5xx - server error
-request method (GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD)
-
-django, fastapi
-
-
-django + jinja(template)
-canva
-claude.ai
-chatgpt
-
-
-
-python3 manage.py runserver - projectni run qilish
-python3 manage.py startapp apps - app yaratish
-python3 manage.py makemigrations - modeldagi ozgarishlarni migratsiyasini yaratadi
-python3 manage.py migrate - migrations ichidagi migratsiyalarni bazaga yozadi
-python3 manage.py createsuperuser - superuser yaratish
-
-
-https://www.bootdey.com/
-
 Homework
 1. https://www.bootdey.com/snippets/view/Shop-product-list
 2. https://books.agiliq.com/projects/django-admin-cookbook/en/latest/index.html#text-and-design
@@ -39,21 +8,8 @@ Homework
 
 
 
-task
-https://www.bootdey.com/snippets/view/Shop-page
 
-
-3ta category
-1 2 3
-
-
-docker exec -it container_name sh
-su postgres
-psql
-create database valijondb;
-
-docker exec -itu postgres container_id psql -c 'create database valijon_db123;'
-
-docker run --name postgres_container -e POSTGRES_PASSWORD=1 -p 5432:5432 -d postgres:alpine
-
-
+slug
+pagination
+orm
+base.html

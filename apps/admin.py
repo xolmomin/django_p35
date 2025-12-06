@@ -18,3 +18,4 @@ class ProductImageStackedInline(admin.StackedInline):
 class ProductModelAdmin(admin.ModelAdmin):
     readonly_fields = ['slug', 'like_count']
     inlines = [ProductImageStackedInline]
+    list_display = ['id', 'name', 'price', 'discount_percentage', 'created_at']

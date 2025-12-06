@@ -7,7 +7,7 @@ register = template.Library()
 
 @register.filter
 def intspace(value):
-    result = str(value)
+    result = str(int(value))
     match = re.match(r"-?\d+", result)
     if match:
         prefix = match[0]
@@ -15,5 +15,4 @@ def intspace(value):
         # Remove a leading comma, if needed.
         prefix_with_commas = re.sub(r"^(-?) ", r"\1", prefix_with_commas)
         result = prefix_with_commas + result[len(prefix):]
-    print(result)
     return result
