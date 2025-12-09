@@ -1,7 +1,11 @@
 from django.contrib import admin
 
-from apps.models import Product, Category, ProductImage
+from apps.models import Product, Category, ProductImage, Tag
 
+
+@admin.register(Tag)
+class TagModelAdmin(admin.ModelAdmin):
+    pass
 
 @admin.register(Category)
 class CategoryModelAdmin(admin.ModelAdmin):
@@ -19,3 +23,4 @@ class ProductModelAdmin(admin.ModelAdmin):
     readonly_fields = ['slug', 'like_count']
     inlines = [ProductImageStackedInline]
     list_display = ['id', 'name', 'price', 'discount_percentage', 'created_at']
+    filter_horizontal = ['tags']

@@ -10,11 +10,5 @@ Homework
 https://books.agiliq.com/projects/django-orm-cookbook/en/latest/#querying-and-filtering
 
 
-id(pk),slug
-pagination
-base.html
-orm
+login, register, profile
 
-
-
-django list va detail page

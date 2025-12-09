@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'apps',
     'django_ckeditor_5',
 
+    'django_jsonform',
 ]
 
 MIDDLEWARE = [
