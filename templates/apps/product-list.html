@@ -66,12 +66,11 @@
                                                 </a>
                                             </p>
                                             <ul class="list-unstyled d-none d-lg-block">
-                                                {% for value in product.specifications.values %}
+                                                {% for item in product.specifications %}
                                                     <li>
-                                                                <span class="fas fa-circle"
-                                                                      data-fa-transform="shrink-12">
-                                                                </span>
-                                                        <span>{{ value }}</span>
+                                                        <span class="fas fa-circle" data-fa-transform="shrink-12">
+                                                        </span>
+                                                        <span>{{ item.value }}</span>
                                                     </li>
                                                 {% endfor %}
                                             </ul>
@@ -93,11 +92,13 @@
                                                         class="ml-1">(8)</span>
                                                 </div>
                                                 <div class="d-none d-lg-block">
-                                                    <p class="fs--1 mb-1">Shipping Cost:
-                                                        <strong>
-                                                            {{ product.shipping_cost|intspace }} UZS
-                                                        </strong>
-                                                    </p>
+                                                    {% if product.shipping_cost %}
+                                                        <p class="fs--1 mb-1">Shipping Cost:
+                                                            <strong>
+                                                                {{ product.shipping_cost|intspace }} UZS
+                                                            </strong>
+                                                        </p>
+                                                    {% endif %}
                                                     <p class="fs--1 mb-1">Stock:
                                                         {% if product.available_quantity %}
                                                             <strong class="text-success">Available</strong>

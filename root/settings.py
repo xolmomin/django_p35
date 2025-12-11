@@ -1,5 +1,6 @@
 import os.path
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv('.env')
@@ -42,6 +43,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "root.urls"
+AUTH_USER_MODEL = 'apps.User'
 
 TEMPLATES = [
     {
@@ -111,6 +113,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

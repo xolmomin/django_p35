@@ -1,9 +1,12 @@
+from django.contrib.auth.models import AbstractUser
 from django.db.models import Model, CharField, IntegerField, ImageField, ForeignKey, CASCADE, SlugField, \
-    PositiveIntegerField, DateTimeField, FloatField, ManyToManyField
+    PositiveIntegerField, DateTimeField, FloatField, ManyToManyField, EmailField
 from django.utils.text import slugify
 from django.utils.timezone import now
 from django_ckeditor_5.fields import CKEditor5Field
 from django_jsonform.models.fields import JSONField
+
+from apps.managers import CustomUserManager
 
 
 class Category(Model):
@@ -72,3 +75,13 @@ class Product(Model):
     @property
     def is_new(self):
         return self.created_at > now().replace(hour=0, minute=0, second=0)
+
+
+class User(AbstractUser):
+    email = EmailField("email address", unique=True)
+    username = None
+
+    objects = CustomUserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []

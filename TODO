@@ -10,5 +10,17 @@ Homework
 https://books.agiliq.com/projects/django-orm-cookbook/en/latest/#querying-and-filtering
 
 
-login, register, profile
+login, register, profile, logout, fixtures, argon2
+via google, github, telegram
 
+
+
+https://github.com/xolmomin/django_p35
+.xml
+.json
+.yaml
+.yml
+
+
+python3 manage.py dumpdata apps.Category > categories.json
+python3 manage.py loaddata categories

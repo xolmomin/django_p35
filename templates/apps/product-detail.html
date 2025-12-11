@@ -54,8 +54,14 @@
                             <del class="mr-1">{{ product.price|intspace }} UZS </del><strong>-{{ product.discount_percentage }}%</strong>
                         </span>
                     </h4>
-                    <p class="fs--1 mb-1"><span>Shipping Cost: </span><strong>{{ product.shipping_cost|intspace }}
-                        UZS</strong></p>
+                    {% if product.shipping_cost %}
+                        <p class="fs--1 mb-1">Shipping Cost:
+                            <strong>
+                                {{ product.shipping_cost|intspace }} UZS
+                            </strong>
+                        </p>
+                    {% endif %}
+                
                     <p class="fs--1">
                         Stock:
                         {% if product.available_quantity %}

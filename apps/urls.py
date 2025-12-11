@@ -1,6 +1,7 @@
 from django.urls import path
 
-from apps.views import ProductListView, ProductDetailView, RegisterTemplateView, LoginTemplateView, ProfileTemplateView
+from apps.views import ProductListView, ProductDetailView, RegisterTemplateView, LoginTemplateView, ProfileTemplateView, \
+    CustomLogoutView
 
 urlpatterns = [
     path('', ProductListView.as_view(), name='product_list_page'),
@@ -9,4 +10,5 @@ urlpatterns = [
     path('auth/profile', ProfileTemplateView.as_view(), name='profile_page'),
     path('auth/register', RegisterTemplateView.as_view(), name='register_page'),
     path('auth/login', LoginTemplateView.as_view(), name='login_page'),
+    path('auth/logout', CustomLogoutView.as_view(), name='logout_page'),
 ]
