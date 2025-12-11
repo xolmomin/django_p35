@@ -10,9 +10,15 @@ Homework
 https://books.agiliq.com/projects/django-orm-cookbook/en/latest/#querying-and-filtering
 
 
-login, register, profile, logout, fixtures, argon2
+login, register, profile, logout, fixtures, argon2, flake8
+
 via google, github, telegram
 
+#HOMEWORK
+product list, product detail, login, register, profile
+
+pages/e-commerce/shopping-cart.html
+fixtures (category, tag, product, user ) 3tadan
 
 
 https://github.com/xolmomin/django_p35

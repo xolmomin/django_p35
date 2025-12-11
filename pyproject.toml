@@ -8,6 +8,7 @@ dependencies = [
     "django>=5.2.8",
     "django-ckeditor-5>=0.2.18",
     "django-jsonform>=2.23.2",
+    "flake8>=7.3.0",
     "pillow>=12.0.0",
     "psycopg2-binary>=2.9.11",
     "python-dotenv>=1.2.1",

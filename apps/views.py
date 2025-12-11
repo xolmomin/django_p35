@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, TemplateView
 
-from apps.models import Product
+from apps.models import Product, User
 
 
 class ProductListView(ListView):
@@ -38,6 +38,18 @@ class LoginTemplateView(TemplateView):
 
 class RegisterTemplateView(TemplateView):
     template_name = 'apps/auth/register.html'
+
+    def post(self, request, *args, **kwargs):
+        first_name = request.POST.get('first_name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
+        if User.objects.filter(email=email).exists() or password != confirm_password:
+            print('XATOLIK')
+            return redirect('register_page')
+        User.objects.create_user(email=email, first_name=first_name, password=password)
+        return redirect('login_page')
 
 
 class ProfileTemplateView(LoginRequiredMixin, TemplateView):
