@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import Group
 
 from apps.models import Product, Category, ProductImage, Tag, User
 
@@ -22,7 +23,7 @@ class ProductImageStackedInline(admin.StackedInline):
 
 @admin.register(Product)
 class ProductModelAdmin(admin.ModelAdmin):
-    readonly_fields = ['slug', 'like_count']
+    readonly_fields = ['like_count']
     inlines = [ProductImageStackedInline]
     list_display = ['id', 'name', 'price', 'discount_percentage', 'created_at']
     filter_horizontal = ['tags']
@@ -60,3 +61,6 @@ class UserModelAdmin(UserAdmin):
             },
         ),
     )
+
+
+admin.site.unregister(Group)

@@ -21,12 +21,9 @@ pages/e-commerce/shopping-cart.html
 fixtures (category, tag, product, user ) 3tadan
 
 
-https://github.com/xolmomin/django_p35
-.xml
-.json
-.yaml
-.yml
-
-
-python3 manage.py dumpdata apps.Category > categories.json
-python3 manage.py loaddata categories
+form (login, register)
+profile update
+google, github
+save cart
+send email
+celery

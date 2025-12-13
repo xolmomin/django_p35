@@ -27,10 +27,18 @@
                             </p>
                         </div>
                     </div>
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
                     <form action="{% url 'login_page' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-group">
-                            <input class="form-control" type="email" name="email" placeholder="Email address"/>
+                            <input class="form-control" type="email" name="username" placeholder="Email address"/>
                         </div>
                         <div class="form-group">
                             <input class="form-control" type="password" name="password" placeholder="Password"/>
@@ -64,7 +72,7 @@
                     <div class="form-group mb-0">
                         <div class="row no-gutters">
                             <div class="col-sm-6 pr-sm-1">
-                                <a class="btn btn-outline-google-plus btn-sm btn-block mt-2" href="#">
+                                <a class="btn btn-outline-google-plus btn-sm btn-block mt-2" href="{% url 'google_login_page' %}">
                                     <span class="fab fa-google-plus-g mr-2" data-fa-transform="grow-8"></span>
                                     google
                                 </a>
