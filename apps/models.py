@@ -1,12 +1,23 @@
+from apps.managers import CustomUserManager
 from django.contrib.auth.models import AbstractUser
-from django.db.models import Model, CharField, IntegerField, ImageField, ForeignKey, CASCADE, SlugField, \
-    PositiveIntegerField, DateTimeField, FloatField, ManyToManyField, EmailField
+from django.db.models import (
+    CASCADE,
+    CharField,
+    DateTimeField,
+    EmailField,
+    FloatField,
+    ForeignKey,
+    ImageField,
+    IntegerField,
+    ManyToManyField,
+    Model,
+    PositiveIntegerField,
+    SlugField,
+)
 from django.utils.text import slugify
 from django.utils.timezone import now
 from django_ckeditor_5.fields import CKEditor5Field
 from django_jsonform.models.fields import JSONField
-
-from apps.managers import CustomUserManager
 
 
 class Category(Model):
@@ -79,9 +90,16 @@ class Product(Model):
 
 class User(AbstractUser):
     email = EmailField("email address", unique=True)
+    image = ImageField(upload_to='users/images/%Y/%m/%d', blank=True, null=True)
+    banner = ImageField(upload_to='users/banners/%Y/%m/%d', blank=True, null=True)
+
     username = None
 
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    @property
+    def is_valid_password(self):
+        return self.has_usable_password()

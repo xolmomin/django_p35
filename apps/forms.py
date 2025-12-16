@@ -1,10 +1,8 @@
+from apps.models import User
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
-from django.forms.fields import EmailField, CharField
-from django.forms.widgets import TextInput, PasswordInput
-
-from apps.models import User
+from django.forms.fields import CharField, EmailField
 
 
 class RegisterModelForm(ModelForm):
@@ -30,3 +28,17 @@ class RegisterModelForm(ModelForm):
             raise ValidationError("Parollar mos kelmadi!")
         self.cleaned_data["password"] = make_password(password)
         return self.cleaned_data
+
+# class CustomPasswordChangeForm(PasswordChangeForm):
+#     @sensitive_variables("old_password")
+#     def clean_old_password(self):
+#         """
+#         Validate that the old_password field is correct.
+#         """
+#         old_password = self.cleaned_data["old_password"]
+#         if not self.user.check_password(old_password):
+#             raise ValidationError(
+#                 self.error_messages["password_incorrect"],
+#                 code="password_incorrect",
+#             )
+#         return old_password

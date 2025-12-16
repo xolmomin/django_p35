@@ -23,7 +23,10 @@ fixtures (category, tag, product, user ) 3tadan
 
 form (login, register)
 profile update
-google, github
-save cart
+google
+
+github
 send email
 celery
+
+save cart

@@ -56,10 +56,11 @@
 
                 </div>
                 <a class="navbar-brand" href="{% url 'product_list_page' %}">
-                    <div class="d-flex align-items-center py-3"><img class="mr-2"
-                                                                     src="{% static 'apps/assets/img/illustrations/falcon.png' %}"
-                                                                     alt=""
-                                                                     width="40"/><span
+                    <div class="d-flex align-items-center py-3">
+                        <img class="mr-2"
+                             src="{% static 'apps/assets/img/illustrations/falcon.png' %}"
+                             alt=""
+                             width="40"/><span
                             class="text-sans-serif">falcon</span>
                     </div>
                 </a>
@@ -881,14 +882,19 @@
                         </div>
 
                     </li>
-                    <li class="nav-item dropdown dropdown-on-hover"><a class="nav-link pr-0" id="navbarDropdownUser"
-                                                                       href="#" role="button" data-toggle="dropdown"
-                                                                       aria-haspopup="true" aria-expanded="false">
-                        <div class="avatar avatar-xl">
-                            <img class="rounded-circle" src="{% static 'apps/assets/img/team/3-thumb.png' %}" alt=""/>
-
-                        </div>
-                    </a>
+                    <li class="nav-item dropdown dropdown-on-hover">
+                        <a class="nav-link pr-0" id="navbarDropdownUser"
+                           href="#" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <div class="avatar avatar-xl">
+                                {% if user.image %}
+                                    <img class="rounded-circle" src="{{ user.image.url }}" alt="..."/>
+                                {% else %}
+                                    <img class="rounded-circle" src="{% static 'apps/assets/img/no-user.png' %}"
+                                         alt="..."/>
+                                {% endif %}
+                            </div>
+                        </a>
                         <div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="navbarDropdownUser">
                             <div class="bg-white rounded-soft py-2">
                                 {% if user.is_authenticated %}

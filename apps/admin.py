@@ -1,8 +1,7 @@
+from apps.models import Category, Product, ProductImage, Tag, User
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
-
-from apps.models import Product, Category, ProductImage, Tag, User
 
 
 @admin.register(Tag)

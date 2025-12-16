@@ -1,16 +1,17 @@
 import urllib.parse
 
 import requests
-from django.contrib.auth import logout, login
+from apps.forms import RegisterModelForm
+from apps.models import Product, User
+from django.contrib.auth import login, logout, update_session_auth_hash
+from django.contrib.auth.forms import AdminPasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, DetailView, TemplateView, CreateView
-
-from apps.forms import RegisterModelForm
-from apps.models import Product, User
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from root import settings
 
 
@@ -39,9 +40,51 @@ class RegisterCreateView(CreateView):
     success_url = reverse_lazy('login_page')
 
 
-class ProfileTemplateView(LoginRequiredMixin, TemplateView):
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    queryset = User.objects.all()
     template_name = 'apps/auth/profile.html'
-    login_url = reverse_lazy('login_page')
+    fields = ['first_name', 'last_name']
+    success_url = reverse_lazy('profile_page')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+
+class ProfileImageUpdateView(LoginRequiredMixin, UpdateView):
+    queryset = User.objects.all()
+    template_name = 'apps/auth/profile.html'
+    fields = ['image', 'banner']
+    success_url = reverse_lazy('profile_page')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+
+PasswordChangeView
+
+
+class ProfileChangePasswordView(LoginRequiredMixin, UpdateView):
+    queryset = User.objects.all()
+    template_name = 'apps/auth/profile.html'
+    form_class = AdminPasswordChangeForm
+    success_url = reverse_lazy('profile_page')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["user"] = self.request.user
+        kwargs.pop('instance')
+        return kwargs
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def form_valid(self, form):
+        form.save()
+        update_session_auth_hash(self.request, self.request.user)
+        return HttpResponseRedirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        return super().form_invalid(form)
 
 
 class CustomLogoutView(View):
@@ -91,6 +134,9 @@ class GoogleCallbackView(View):
                 email=email,
                 defaults={"first_name": name}
             )
+            if not user.is_valid_password:
+                user.set_unusable_password()
+                user.save(update_fields=['password'])
             login(request, user)
 
             return redirect('product_list_page')
