@@ -25,8 +25,18 @@ form (login, register)
 profile update
 google
 
-github
-send email
-celery
+github, send email, celery, save cart
 
-save cart
+
+exam da tushadigan savollar
+1. fixtures bilan ishlash
+2. django adminka
+3. django template da (static korsatish, boshqa page ga otish)
+4. pagination
+5. django orm
+6. forma bilan ishlash
+7. nimadir orqali kirish
+8. django model bilan ishlash
+9. templatetags bilan ishlash
+
+
