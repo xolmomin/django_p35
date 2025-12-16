@@ -1,17 +1,18 @@
 import urllib.parse
 
 import requests
-from apps.forms import RegisterModelForm
-from apps.models import Product, User
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.forms import AdminPasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView, PasswordChangeView
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
+
+from apps.forms import RegisterModelForm
+from apps.models import Product, User
 from root import settings
 
 
@@ -58,9 +59,6 @@ class ProfileImageUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
-
-
-PasswordChangeView
 
 
 class ProfileChangePasswordView(LoginRequiredMixin, UpdateView):
@@ -134,7 +132,7 @@ class GoogleCallbackView(View):
                 email=email,
                 defaults={"first_name": name}
             )
-            if not user.is_valid_password:
+            if not user.is_valid_password or created:
                 user.set_unusable_password()
                 user.save(update_fields=['password'])
             login(request, user)
