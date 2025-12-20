@@ -1,8 +1,10 @@
-from apps.models import User
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from django.forms.fields import CharField, EmailField
+
+from apps.models import User
+from apps.tasks import send_registration_email
 
 
 class RegisterModelForm(ModelForm):
@@ -29,16 +31,7 @@ class RegisterModelForm(ModelForm):
         self.cleaned_data["password"] = make_password(password)
         return self.cleaned_data
 
-# class CustomPasswordChangeForm(PasswordChangeForm):
-#     @sensitive_variables("old_password")
-#     def clean_old_password(self):
-#         """
-#         Validate that the old_password field is correct.
-#         """
-#         old_password = self.cleaned_data["old_password"]
-#         if not self.user.check_password(old_password):
-#             raise ValidationError(
-#                 self.error_messages["password_incorrect"],
-#                 code="password_incorrect",
-#             )
-#         return old_password
+    def save(self, commit=True):
+        user: User = super().save(commit)
+        send_registration_email.delay(user.email)
+        return user

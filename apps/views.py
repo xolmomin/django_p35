@@ -13,6 +13,7 @@ from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from apps.forms import RegisterModelForm
 from apps.models import Product, User
+
 from root import settings
 
 
@@ -33,6 +34,13 @@ class CustomLoginView(LoginView):
     template_name = 'apps/auth/login.html'
     success_url = reverse_lazy('product_list_page')
     redirect_authenticated_user = True
+
+
+class DeleteAccountView(LoginRequiredMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        request.user.delete()
+        return redirect('product_list_page')
 
 
 class RegisterCreateView(CreateView):
@@ -130,7 +138,7 @@ class GoogleCallbackView(View):
 
             user, created = User.objects.get_or_create(
                 email=email,
-                defaults={"first_name": name}
+                defaults={"first_name": name, 'is_active': True}
             )
             if not user.is_valid_password or created:
                 user.set_unusable_password()

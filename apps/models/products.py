@@ -1,10 +1,7 @@
-from apps.managers import CustomUserManager
-from django.contrib.auth.models import AbstractUser
 from django.db.models import (
     CASCADE,
     CharField,
     DateTimeField,
-    EmailField,
     FloatField,
     ForeignKey,
     ImageField,
@@ -86,20 +83,3 @@ class Product(Model):
     @property
     def is_new(self):
         return self.created_at > now().replace(hour=0, minute=0, second=0)
-
-
-class User(AbstractUser):
-    email = EmailField("email address", unique=True)
-    image = ImageField(upload_to='users/images/%Y/%m/%d', blank=True, null=True)
-    banner = ImageField(upload_to='users/banners/%Y/%m/%d', blank=True, null=True)
-
-    username = None
-
-    objects = CustomUserManager()
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
-
-    @property
-    def is_valid_password(self):
-        return self.has_usable_password()

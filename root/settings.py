@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'apps',
     'django_ckeditor_5',
-
+    'django_celery_results',
+    'django_celery_beat',
     'django_jsonform',
 ]
 
@@ -366,3 +367,12 @@ JAZZMIN_SETTINGS = {
     # Add a language dropdown into the admin
     # "language_chooser": True,
 }
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'django-db'

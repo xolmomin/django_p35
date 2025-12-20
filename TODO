@@ -28,6 +28,18 @@ google
 github, send email, celery, save cart
 
 
+docker run --name my_redis -p 6379:6379 -d redis:alpine
+
+"""
+celery
+django celery result
+django celery beat
+flower
+
+"""
+
+
+
 exam da tushadigan savollar
 1. fixtures bilan ishlash
 2. django adminka
@@ -38,5 +50,17 @@ exam da tushadigan savollar
 7. nimadir orqali kirish
 8. django model bilan ishlash
 9. templatetags bilan ishlash
+
+
+
+
+
+django-celery-beat
+
+
+cron
+
+
+
 
 
