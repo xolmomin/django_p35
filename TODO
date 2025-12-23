@@ -31,10 +31,7 @@ github, send email, celery, save cart
 docker run --name my_redis -p 6379:6379 -d redis:alpine
 
 """
-celery
-django celery result
-django celery beat
-flower
+
 
 """
 
@@ -42,23 +39,36 @@ flower
 
 exam da tushadigan savollar
 1. fixtures bilan ishlash
-2. django adminka
+2. django admin
 3. django template da (static korsatish, boshqa page ga otish)
 4. pagination
 5. django orm
 6. forma bilan ishlash
-7. nimadir orqali kirish
+7. google orqali kirish
 8. django model bilan ishlash
 9. templatetags bilan ishlash
+10. send email
+11. celery, django celery result, django celery beat, flower
+12. django class view lar bilan ishlash
 
 
 
 
-
-django-celery-beat
-
-
-cron
+mptt
+django-jazzmin
+jsonform
+i18n - rosetta, translation
+signal
+middleware
+context_processor
+async code
+django commands (custom)
+django orm (queryset, manager, custom fields, custom lookup)
+multiple db
+generate pdf
+django-crispy-forms
+https://djangopackages.org
+celery (priority)
 
 
 

@@ -57,7 +57,6 @@ class Product(Model):
     shipping_cost = IntegerField()
     price = FloatField()
     discount_percentage = IntegerField()
-
     quantity = PositiveIntegerField()
     tags = ManyToManyField('apps.Tag', related_name='products', blank=True)
     category = ForeignKey('apps.Category', CASCADE, related_name='products')

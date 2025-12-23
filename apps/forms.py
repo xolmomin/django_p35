@@ -1,6 +1,6 @@
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm
+from django.forms import ModelForm, EmailInput
 from django.forms.fields import CharField, EmailField
 
 from apps.models import User

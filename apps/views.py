@@ -13,7 +13,6 @@ from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from apps.forms import RegisterModelForm
 from apps.models import Product, User
-
 from root import settings
 
 
@@ -21,7 +20,7 @@ class ProductListView(ListView):
     queryset = Product.objects.all()
     template_name = 'apps/product-list.html'
     context_object_name = 'products'
-    paginate_by = 3
+    paginate_by = 100
 
 
 class ProductDetailView(DetailView):
